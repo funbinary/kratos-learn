@@ -14,7 +14,7 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	cs, err := consul.New(consulClient, consul.WithPath("http"))
+	cs, err := consul.New(consulClient, consul.WithPath("http/server"))
 	// consul中需要标注文件后缀，kratos读取配置需要适配文件后缀
 	// The file suffix needs to be marked, and kratos needs to adapt the file suffix to read the configuration.
 	if err != nil {
@@ -29,7 +29,7 @@ func main() {
 	}
 
 	// acquire config value
-	foo, err := c.Value("http.server.port").String()
+	foo, err := c.Value("port").String()
 	if err != nil {
 		log.Fatalln(err)
 	}
